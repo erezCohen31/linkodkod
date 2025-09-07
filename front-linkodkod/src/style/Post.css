@@ -7,7 +7,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: "Times New Roman", Times, serif;
   transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
@@ -34,15 +33,13 @@
 .like {
   width: 25px;
   height: 25px;
-  background-image: url("../assets/coeur-vide.png");
+  background-image: url("../assets/imagePost/coeur-vide.png");
 }
 .like:hover {
-  width: 25px;
-  height: 25px;
-  background-image: url("../assets/coeur-red.png");
+  background-image: url("../assets/imagePost/coeur-red.png");
 }
 .like-clicked {
   width: 25px;
   height: 25px;
-  background-image: url("../assets/coeur-red.png");
+  background-image: url("../assets/imagePost/coeur-red.png");
 }

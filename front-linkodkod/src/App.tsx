@@ -1,10 +1,18 @@
 import "./App.css";
-import PostsPage from "./pages/Posts.page.tsx";
+import PostsPage from "./components/application_layout/PostsPage.tsx";
+import Layout from "./components/Layout.tsx";
+import { BrowserRouter, Routes, Route } from "react-router";
 
 function App() {
   return (
     <>
-      <PostsPage />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route path="/" element={<PostsPage />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }

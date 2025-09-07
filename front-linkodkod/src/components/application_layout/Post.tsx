@@ -1,6 +1,6 @@
-import { useRef, useState } from "react";
-import type PostProps from "../interface/PostProps.ts";
-import "../style/Post.css";
+import { useState } from "react";
+import type PostProps from "../../interface/PostProps.ts";
+import "../../style/Post.css";
 
 export default function Post({ post }: PostProps) {
   const [likeState, useLikeState] = useState("like");

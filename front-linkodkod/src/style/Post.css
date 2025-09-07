@@ -1,0 +1,24 @@
+.post {
+  max-width: 300px;
+  border: 1px sandybrown solid;
+  padding: 15px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Times New Roman", Times, serif;
+}
+.post-image {
+  width: 250px;
+}
+.post-information {
+  width: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.container-like {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}

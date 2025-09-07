@@ -31,4 +31,12 @@ front-linkodkod/
          ├── Post.ts              # interface of the post
          ├── PostProps.ts         # interface oh the props post
          └── PostsPageProps.ts    # interface of the props container post
+
+
+## To run
+
+-clone it
+-npm i
+-npm run dev
+
 ```

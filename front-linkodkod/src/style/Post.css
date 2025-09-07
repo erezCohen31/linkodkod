@@ -1,7 +1,7 @@
 .post {
   min-width: 250px;
   max-width: 300px;
-  border: 1px sandybrown solid;
+  border: 1px rgba(12, 173, 247, 0.441) solid;
   padding: 15px;
   border-radius: 15px;
   display: flex;
@@ -26,7 +26,7 @@
 }
 
 .post:hover {
-  border: 2px sandybrown solid;
+  border: 2px rgba(12, 173, 247, 0.533) solid;
   transform: translateY(-2px);
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.25);
 }

@@ -14,24 +14,26 @@ export default function Post({ post }: PostProps) {
     /*create post with the props*/
   }
   return (
-    <div
-      className="post"
-      onClick={() => {
-        setPost(post);
-        navigate("post");
-      }}
-    >
-      <img className="post-image" src={post.url} alt={post.alt} />
+    <div className="post">
+      <img
+        onClick={() => {
+          setPost(post);
+          navigate("post");
+        }}
+        className="post-image"
+        src={post.url}
+        alt={post.alt}
+      />
       <p>Description:{post.description}</p>
       <div className="post-information">
         <div className="container-like">
           <div
             className={likeState}
-            onClick={() =>
+            onClick={() => {
               useLikeState(
                 likeState === "like-clicked" ? "like" : "like-clicked"
-              )
-            }
+              );
+            }}
           ></div>
           <p>{post.numOfLike}</p>
         </div>

@@ -1,0 +1,45 @@
+.post {
+  min-width: 250px;
+  max-width: 300px;
+  border: 1px sandybrown solid;
+  padding: 15px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+.post-image {
+  width: 90%;
+}
+.post-information {
+  width: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.container-like {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.post:hover {
+  border: 2px sandybrown solid;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.25);
+}
+.like {
+  width: 25px;
+  height: 25px;
+  background-image: url("../assets/imagePost/coeur-vide.png");
+}
+.like:hover {
+  background-image: url("../assets/imagePost/coeur-red.png");
+}
+.like-clicked {
+  width: 25px;
+  height: 25px;
+  background-image: url("../assets/imagePost/coeur-red.png");
+}

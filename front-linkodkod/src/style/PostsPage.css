@@ -1,0 +1,14 @@
+.container-posts {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 10px;
+}
+
+@media screen and (max-width: 550px) {
+  .container-posts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}

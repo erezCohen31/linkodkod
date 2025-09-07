@@ -4,7 +4,7 @@ const posts = [
     alt: "image of men",
     description:
       "this is a description <eqgwdrghdwrth es<gdhdrh egs<eg QSFQSF Q fQF ",
-    numOfLike: 25,
+    numOfLike: 26,
     username: "erez",
     time: "20:00",
   },

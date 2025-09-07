@@ -2,23 +2,19 @@ import { useState } from "react";
 import type PostProps from "../../interface/PostProps.ts";
 import "../../style/Post.css";
 import { useNavigate } from "react-router";
-import { useContext } from "react";
-import { PostContext } from "../../context/PostProvider.tsx";
+import "../../style/PostPage.css";
 
 export default function Post({ post }: PostProps) {
   const [likeState, useLikeState] = useState("like");
   const navigate = useNavigate();
-  const { setPost } = useContext(PostContext);
-
   {
     /*create post with the props*/
   }
   return (
     <div
-      className="post"
+      className="post-page"
       onClick={() => {
-        setPost(post);
-        navigate("post");
+        navigate("/");
       }}
     >
       <img className="post-image" src={post.url} alt={post.alt} />

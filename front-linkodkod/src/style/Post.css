@@ -1,4 +1,5 @@
 .post {
+  min-width: 200px;
   max-width: 300px;
   border: 1px sandybrown solid;
   padding: 15px;
@@ -9,7 +10,7 @@
   font-family: "Times New Roman", Times, serif;
 }
 .post-image {
-  width: 250px;
+  width: 90%;
 }
 .post-information {
   width: 250px;

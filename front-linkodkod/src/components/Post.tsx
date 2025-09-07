@@ -1,18 +1,18 @@
 import type PostProps from "../interface/PostProps.ts";
 import "../style/Post.css";
 
-export default function Post({ props }: PostProps) {
+export default function Post({ post }: PostProps) {
   return (
     <div className="post">
-      <img className="post-image" src={props.url} alt={props.alt} />
-      <p>Description:{props.description}</p>
+      <img className="post-image" src={post.url} alt={post.alt} />
+      <p>Description:{post.description}</p>
       <div className="post-information">
         <div className="container-like">
           <span className="material-symbols-outlined">favorite</span>
-          <p>{props.numOfLike}</p>
+          <p>{post.numOfLike}</p>
         </div>
-        <p>{props.username}</p>
-        <time dateTime="20:00">{props.time}</time>
+        <p>{post.username}</p>
+        <time dateTime="20:00">{post.time}</time>
       </div>
     </div>
   );

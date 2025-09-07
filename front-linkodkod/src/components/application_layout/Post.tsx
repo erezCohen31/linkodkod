@@ -4,6 +4,9 @@ import "../../style/Post.css";
 
 export default function Post({ post }: PostProps) {
   const [likeState, useLikeState] = useState("like");
+  {
+    /*create post with the props*/
+  }
   return (
     <div className="post">
       <img className="post-image" src={post.url} alt={post.alt} />

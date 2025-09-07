@@ -1,5 +1,5 @@
 import Post from "./Post.tsx";
-import "../../style/PostsPage.css";
+import "../../style/ContainerPosts.css";
 import posts from "../../assets/data/my-posts.ts";
 
 export default function PostsPage() {

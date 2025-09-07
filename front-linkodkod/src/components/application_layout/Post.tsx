@@ -9,32 +9,27 @@ export default function Post({ post }: PostProps) {
   const [likeState, useLikeState] = useState("like");
   const navigate = useNavigate();
   const { setPost } = useContext(PostContext);
+  const clickLike = (event: any) => {
+    event.stopPropagation();
+    useLikeState(likeState === "like-clicked" ? "like" : "like-clicked");
+  };
 
   {
     /*create post with the props*/
   }
   return (
-    <div className="post">
-      <img
-        onClick={() => {
-          setPost(post);
-          navigate("post");
-        }}
-        className="post-image"
-        src={post.url}
-        alt={post.alt}
-      />
+    <div
+      className="post"
+      onClick={() => {
+        setPost(post);
+        navigate("post");
+      }}
+    >
+      <img className="post-image" src={post.url} alt={post.alt} />
       <p>Description:{post.description}</p>
       <div className="post-information">
         <div className="container-like">
-          <div
-            className={likeState}
-            onClick={() => {
-              useLikeState(
-                likeState === "like-clicked" ? "like" : "like-clicked"
-              );
-            }}
-          ></div>
+          <div className={likeState} onClick={clickLike}></div>
           <p>{post.numOfLike}</p>
         </div>
         <p>{post.username}</p>

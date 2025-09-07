@@ -7,6 +7,10 @@ import "../../style/PostPage.css";
 export default function Post({ post }: PostProps) {
   const [likeState, useLikeState] = useState("like");
   const navigate = useNavigate();
+  const clickLike = (event: any) => {
+    event.stopPropagation();
+    useLikeState(likeState === "like-clicked" ? "like" : "like-clicked");
+  };
   {
     /*create post with the props*/
   }
@@ -21,14 +25,7 @@ export default function Post({ post }: PostProps) {
       <p>Description:{post.description}</p>
       <div className="post-information">
         <div className="container-like">
-          <div
-            className={likeState}
-            onClick={() =>
-              useLikeState(
-                likeState === "like-clicked" ? "like" : "like-clicked"
-              )
-            }
-          ></div>
+          <div className={likeState} onClick={clickLike}></div>
           <p>{post.numOfLike}</p>
         </div>
         <p>{post.username}</p>

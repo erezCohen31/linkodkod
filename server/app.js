@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import PostRoutes from "./routes/PostRoute.js";
+import AuthRoutes from "./routes/AuthRoute.js";
 import path from "path";
 import { dirname } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -17,6 +18,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
 
 app.use("/api/post", PostRoutes);
+app.use("api/auth", AuthRoutes);
 
 app.listen(port, () =>
   console.log(`Server running at http://localhost:${port}`)

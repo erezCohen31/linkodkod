@@ -1,4 +1,5 @@
 import fs from "fs";
+import { json } from "stream/consumers";
 
 export function readFile(url) {
   try {
@@ -7,7 +8,7 @@ export function readFile(url) {
       flag: "r",
     });
 
-    return data;
+    return JSON.parse(data);
   } catch (error) {
     return error;
   }

@@ -8,7 +8,7 @@ import { PostContext } from "../../context/PostProvider.tsx";
 export default function Post({ post }: PostProps) {
   const [likeState, useLikeState] = useState("like");
   const navigate = useNavigate();
-  const { setPost } = useContext(PostContext);
+  const { setPostContext } = useContext(PostContext);
   const clickLike = (event: any) => {
     event.stopPropagation();
     useLikeState(likeState === "like-clicked" ? "like" : "like-clicked");
@@ -21,8 +21,8 @@ export default function Post({ post }: PostProps) {
     <div
       className="post"
       onClick={() => {
-        setPost(post);
-        navigate("post");
+        setPostContext(post);
+        navigate(`post:${post.id}`);
       }}
     >
       <img

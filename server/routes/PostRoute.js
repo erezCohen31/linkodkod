@@ -4,7 +4,7 @@ import postController from "../controller/PostController.js";
 
 const router = Router();
 
-router.post("/image", upload.single("image"), postController.imagePost);
+router.post("/image", upload.single("image"), postController.addPost);
 router.get("/", postController.getAllPosts);
 router.get("/:id", postController.getPostByid);
 

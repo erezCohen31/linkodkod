@@ -15,7 +15,7 @@ function App() {
         <Routes>
           {/*layout with the header and change the content */}
           <Route path="/" element={<Layout />}>
-            <Route path="/" element={<PostsPage />} />
+            <Route path="/home" element={<PostsPage />} />
             {post && <Route path="/post" element={<PostPage post={post} />} />}
           </Route>
         </Routes>

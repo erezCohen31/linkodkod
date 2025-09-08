@@ -12,7 +12,7 @@ router.get("/", (req, res) => {
 
     res.json(posts);
   } catch (error) {
-    res.status(501).json({ error: err.message });
+    res.status(500).json({ message: "Internal Server Error" });
   }
 });
 

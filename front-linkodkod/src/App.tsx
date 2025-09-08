@@ -5,6 +5,7 @@ import Layout from "./components/Layout.tsx";
 import { BrowserRouter, Routes, Route } from "react-router";
 import { PostContext } from "./context/PostProvider.tsx";
 import { useContext } from "react";
+import AddPost from "./components/application_layout/AddPost.tsx";
 
 function App() {
   const { post } = useContext(PostContext);
@@ -17,6 +18,7 @@ function App() {
           <Route path="/" element={<Layout />}>
             <Route path="/home" element={<PostsPage />} />
             {post && <Route path="/post" element={<PostPage post={post} />} />}
+            <Route path="/add-post" element={<AddPost />}></Route>
           </Route>
         </Routes>
       </BrowserRouter>

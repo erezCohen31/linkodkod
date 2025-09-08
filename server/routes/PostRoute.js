@@ -1,17 +1,10 @@
 import { Router } from "express";
-import { readFile } from "../utils/file.js";
-import path from "path";
+import upload from "../middleware/imageMiddleware.js";
+import postController from "../controller/PostController.js";
 
 const router = Router();
-const urlPost = path.join(process.cwd(), "public/posts.json");
 
-router.get("/", (req, res) => {
-  try {
-    const posts = readFile(urlPost);
-    res.json(posts);
-  } catch (error) {
-    res.status(500).json({ message: "Internal Server Error" });
-  }
-});
+router.post("/image", upload.single("image"), postController.imagePost);
+router.get("/", postController.getAllPosts);
 
 export default router;

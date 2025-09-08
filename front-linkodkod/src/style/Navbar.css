@@ -1,0 +1,19 @@
+.navbar {
+  background: #013e6d;
+  background: linear-gradient(
+    90deg,
+    rgba(1, 62, 109, 1) 0%,
+    rgba(1, 62, 109, 0.814) 100%
+  );
+  font-style: italic;
+  font-size: x-large;
+  display: flex;
+  justify-content: space-around;
+  color: black;
+  padding: 10px;
+}
+
+.navlink {
+  color: #fff;
+  text-decoration: none;
+}

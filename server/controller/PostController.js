@@ -2,6 +2,8 @@ import postService from "../service/postService.js";
 
 const postController = {
   async imagePost(req, res) {
+    console.log(req + " upload");
+
     if (req.file) {
       res.send("Image uploaded successfully: " + req.file.filename);
     } else {

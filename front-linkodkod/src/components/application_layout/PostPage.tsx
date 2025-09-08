@@ -15,21 +15,23 @@ export default function Post({ post }: PostProps) {
     /*create post with the props*/
   }
   return (
-    <div
-      className="post-page"
-      onClick={() => {
-        navigate("/");
-      }}
-    >
-      <img className="post-image" src={post.url} alt={post.alt} />
-      <p>Description:{post.description}</p>
-      <div className="post-information">
-        <div className="container-like">
-          <div className={likeState} onClick={clickLike}></div>
-          <p>{post.numOfLike}</p>
+    <div className="container-postpage">
+      <div
+        className="post-page"
+        onClick={() => {
+          navigate("/");
+        }}
+      >
+        <img className="post-image" src={post.url} alt={post.alt} />
+        <p>Description:{post.description}</p>
+        <div className="post-information">
+          <div className="container-like">
+            <div className={likeState} onClick={clickLike}></div>
+            <p>{post.numOfLike}</p>
+          </div>
+          <p>{post.username}</p>
+          <time dateTime="20:00">{post.time}</time>
         </div>
-        <p>{post.username}</p>
-        <time dateTime="20:00">{post.time}</time>
       </div>
     </div>
   );

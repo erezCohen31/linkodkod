@@ -6,7 +6,6 @@ export function readFile(url) {
       encoding: "utf8",
       flag: "r",
     });
-    console.log(data);
 
     return data;
   } catch (error) {

@@ -1,0 +1,11 @@
+footer {
+  background: #013e6d;
+  background: linear-gradient(
+    90deg,
+    rgba(1, 62, 109, 1) 0%,
+    rgba(1, 62, 109, 0.814) 100%
+  );
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

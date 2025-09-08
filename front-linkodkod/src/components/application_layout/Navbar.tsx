@@ -7,7 +7,7 @@ export default function Navbar() {
       <NavLink className={"navlink"} to="/home">
         Home
       </NavLink>
-      <NavLink className={"navlink"} to="/add">
+      <NavLink className={"navlink"} to="/add-post">
         Add Post
       </NavLink>
       <NavLink className={"navlink"} to="/My Post">

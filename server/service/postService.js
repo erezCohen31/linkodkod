@@ -19,7 +19,7 @@ const postService = {
   },
   addPost(image, description) {
     const newPost = {
-      id: findId(),
+      id: findId() + 1,
       url: `images/${image}`,
       alt: "image of men",
       description: description,

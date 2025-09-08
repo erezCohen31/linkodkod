@@ -9,7 +9,9 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 .post-image {
-  width: 90%;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
 }
 .post-information {
   width: 250px;

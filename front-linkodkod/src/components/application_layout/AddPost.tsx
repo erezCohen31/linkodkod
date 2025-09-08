@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "../../style/AddPostPage.css";
 
 export default function AddPost() {
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
@@ -24,23 +25,21 @@ export default function AddPost() {
       .catch((error) => console.error("Upload failed:", error));
   };
   return (
-    <>
-      <h1>Upload an Image</h1>
-      <div className="form-add">
-        <form>
-          <input
-            id="text"
-            name="text"
-            type="text"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            placeholder="enter your description"
-            required
-          />
-          <input type="file" onChange={handleImageChange} />
-          <button onClick={handleSumbit}>Share it</button>
-        </form>
-      </div>
-    </>
+    <div className="add-post-page">
+      <h1>Upload a Post</h1>
+      <form className="form-add">
+        <input
+          id="text"
+          name="text"
+          type="text"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          placeholder="enter your description"
+          required
+        />
+        <input type="file" onChange={handleImageChange} />
+        <button onClick={handleSumbit}>Share it</button>
+      </form>
+    </div>
   );
 }

@@ -14,6 +14,7 @@ export default function AddPost() {
       formData.append("image", selectedImage, selectedImage.name);
     }
     formData.append("description", description);
+
     fetch("http://localhost:3000/api/post/image", {
       method: "POST",
       body: formData,

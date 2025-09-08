@@ -1,4 +1,5 @@
 export default interface PostType {
+  id: number;
   url: string;
   alt: string;
   description: string;

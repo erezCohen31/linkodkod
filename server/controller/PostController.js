@@ -1,6 +1,4 @@
-import { readFile } from "../utils/file.js";
-import path from "path";
-const urlPost = path.join(process.cwd(), "public/posts.json");
+import postService from "../service/postService.js";
 
 const postController = {
   async imagePost(req, res) {
@@ -13,8 +11,28 @@ const postController = {
 
   async getAllPosts(req, res) {
     try {
-      const posts = readFile(urlPost);
+      const posts = postService.getAllPost();
+      if (!posts) {
+        return res.status(404).json({ message: "Posts not found" });
+      }
+
       res.json(posts);
+    } catch (error) {
+      res.status(500).json({ message: "Internal Server Error" });
+    }
+  },
+
+  async getPostByid(req, res) {
+    try {
+      const { id } = req.params;
+      const post = postService.getPostById(Number(id));
+      console.log(post);
+
+      if (!post) {
+        return res.status(404).json({ message: "Post not found" });
+      }
+
+      res.json(post);
     } catch (error) {
       res.status(500).json({ message: "Internal Server Error" });
     }

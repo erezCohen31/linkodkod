@@ -10,12 +10,12 @@ export default function PostsPage() {
   useEffect(() => {
     fetch("http://localhost:3000/api/post")
       .then((response) => response.json())
-      .then((fetchedData) => setPosts(JSON.parse(fetchedData)))
+      .then((fetchedData) => setPosts(fetchedData))
       .catch((error) => setError(JSON.parse(error)));
   }, []);
 
   {
-    console.log(error);
+    console.log(posts);
 
     /*map of the posts to create post */
   }

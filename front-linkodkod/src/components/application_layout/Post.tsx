@@ -25,7 +25,11 @@ export default function Post({ post }: PostProps) {
         navigate("post");
       }}
     >
-      <img className="post-image" src={post.url} alt={post.alt} />
+      <img
+        className="post-image"
+        src={"http://localhost:3000/" + post.url}
+        alt={post.alt}
+      />
       <p>Description:{post.description}</p>
       <div className="post-information">
         <div className="container-like">

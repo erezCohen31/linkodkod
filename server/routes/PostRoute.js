@@ -8,7 +8,7 @@ const urlPost = path.join(process.cwd(), "public/posts.json");
 router.get("/", (req, res) => {
   try {
     const posts = readFile(urlPost);
-    console.log(posts);
+    console.log("recu");
 
     res.json(posts);
   } catch (error) {

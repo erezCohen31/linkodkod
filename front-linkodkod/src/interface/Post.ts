@@ -1,4 +1,4 @@
-export default interface Post {
+export default interface PostType {
   url: string;
   alt: string;
   description: string;

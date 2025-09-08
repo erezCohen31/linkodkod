@@ -1,19 +1,17 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "../../style/Post.css";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import "../../style/PostPage.css";
 import type PostType from "../../interface/Post.ts";
-import type PostPageProps from "../../interface/PostPageProps.ts";
-import { PostContext } from "../../context/PostProvider.tsx";
 
-export default function PostPage(id: PostPageProps) {
+export default function PostPage() {
   const [likeState, useLikeState] = useState("like");
   const [post, setPost] = useState<PostType>();
   const [error, setError] = useState<any>();
-  const { postContext } = useContext(PostContext);
+  const { id } = useParams();
 
   useEffect(() => {
-    fetch(`http://localhost:3000/api/post/${postContext?.id}`)
+    fetch(`http://localhost:3000/api/post/${id}`)
       .then((response) => response.json())
       .then((fetchedData) => setPost(fetchedData))
       .catch((error) => setError(JSON.parse(error)));
@@ -26,6 +24,8 @@ export default function PostPage(id: PostPageProps) {
     useLikeState(likeState === "like-clicked" ? "like" : "like-clicked");
   };
   {
+    console.log(id);
+
     /*create post with the props*/
   }
   if (error) {
@@ -34,7 +34,7 @@ export default function PostPage(id: PostPageProps) {
   return (
     <div
       onClick={() => {
-        navigate("/home");
+        navigate("/posts");
       }}
       className="container-postpage"
     >

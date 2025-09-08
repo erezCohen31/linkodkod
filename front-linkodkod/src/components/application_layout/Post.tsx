@@ -22,7 +22,7 @@ export default function Post({ post }: PostProps) {
       className="post"
       onClick={() => {
         setPostContext(post);
-        navigate(`post:${post.id}`);
+        navigate(`../post/${post.id}`);
       }}
     >
       <img

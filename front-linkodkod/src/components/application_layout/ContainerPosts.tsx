@@ -15,8 +15,6 @@ export default function PostsPage() {
   }, []);
 
   {
-    console.log(posts);
-
     /*map of the posts to create post */
   }
 

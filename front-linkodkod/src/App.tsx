@@ -8,7 +8,7 @@ import { useContext } from "react";
 import AddPost from "./components/application_layout/AddPost.tsx";
 
 function App() {
-  const { post } = useContext(PostContext);
+  const { postContext } = useContext(PostContext);
 
   return (
     <>
@@ -17,7 +17,12 @@ function App() {
           {/*layout with the header and change the content */}
           <Route path="/" element={<Layout />}>
             <Route path="/home" element={<PostsPage />} />
-            {post && <Route path="/post" element={<PostPage post={post} />} />}
+            {postContext && (
+              <Route
+                path={`/home/post:${postContext.id}`}
+                element={<PostPage id={postContext.id} />}
+              />
+            )}
             <Route path="/add-post" element={<AddPost />}></Route>
           </Route>
         </Routes>

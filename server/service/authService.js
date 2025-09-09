@@ -36,11 +36,13 @@ const authService = {
     return false;
   },
   async compareUser(mail, password) {
+    let valid;
     const foundUser = findUser(mail);
+
     if (foundUser) {
-      const valid = await bcrypt.compare(password, foundUser.password);
+      valid = await bcrypt.compare(password, foundUser.password);
     }
-    if (foundUser && valid) {
+    if (valid) {
       return foundUser;
     }
     return false;

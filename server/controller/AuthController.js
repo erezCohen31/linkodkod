@@ -10,7 +10,7 @@ const authController = {
         const token = generateToken(user.id.toString());
         console.log(token);
         res.json({
-          user: { id: user.id, name: user.name, email: user.email },
+          user: { id: user.id, name: user.name, mail: user.mail },
           token,
         });
       }
@@ -21,10 +21,11 @@ const authController = {
     try {
       const { mail, password } = req.body;
       const user = await authService.compareUser(mail, password);
+
       if (user) {
         const token = generateToken(user.id.toString());
         res.json({
-          user: { id: user.id, name: user.name, email: user.email },
+          user: { id: user.id, name: user.name, mail: user.mail },
           token,
         });
       }

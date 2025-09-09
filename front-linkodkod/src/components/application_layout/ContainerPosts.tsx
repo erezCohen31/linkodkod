@@ -3,17 +3,24 @@ import "../../style/ContainerPosts.css";
 import { useContext, useEffect, useState } from "react";
 import type PostType from "../../interface/Post.ts";
 import { UserContext } from "../../context/User.context.tsx";
+import { getAllPosts } from "../../controller/PostController.ts";
 
 export default function PostsPage() {
   const [posts, setPosts] = useState<PostType[]>();
   const [error, setError] = useState<any>();
   const { user } = useContext(UserContext);
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/post")
-      .then((response) => response.json())
-      .then((fetchedData) => setPosts(fetchedData))
-      .catch((error) => setError(JSON.parse(error)));
+    const fetchData = async () => {
+      const posts = await getAllPosts(token || "");
+      if (posts) {
+        setPosts(posts);
+      } else {
+        setError(posts);
+      }
+    };
+    fetchData();
   }, []);
 
   {

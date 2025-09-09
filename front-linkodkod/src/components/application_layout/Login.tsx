@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router";
 import type LoginForm from "../../interface/loginForm.ts";
-import { login } from "./controller/UserController.ts";
+import { login } from "../../controller/UserController.ts";
 import { UserContext } from "../../context/User.context.tsx";
 
 export default function Login() {

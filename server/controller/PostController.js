@@ -3,7 +3,6 @@ import postService from "../service/postService.js";
 const postController = {
   async addPost(req, res) {
     const description = req.body.description;
-    console.log(req.file.filename);
 
     postService.addPost(req.file.filename, description);
 
@@ -31,7 +30,6 @@ const postController = {
     try {
       const { id } = req.params;
       const post = postService.getPostById(Number(id));
-      console.log(post);
 
       if (!post) {
         return res.status(404).json({ message: "Post not found" });

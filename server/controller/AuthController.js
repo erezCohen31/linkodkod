@@ -35,6 +35,3 @@ const authController = {
 };
 
 export default authController;
-
-console.log(await authController.signup("ed", "ed", "ed"));
-console.log(await authController.login("ed", "ed"));

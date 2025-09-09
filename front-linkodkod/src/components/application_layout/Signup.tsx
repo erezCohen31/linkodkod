@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router";
-import { login, signup } from "./controller/UserController.ts";
+import { signup } from "./controller/UserController.ts";
 import { UserContext } from "../../context/User.context.tsx";
 import type SignupForm from "../../interface/SignupForm.ts";
 

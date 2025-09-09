@@ -24,7 +24,7 @@ const authController = {
       const user = await authService.compareUser(mail, password);
       if (user) {
         const token = generateToken(user.id.toString());
-        res.json({
+        return res.json({
           user: { id: user.id, name: user.name, mail: user.mail },
           token,
         });

@@ -3,8 +3,14 @@ import postService from "../service/postService.js";
 const postController = {
   async addPost(req, res) {
     try {
-      const { description, userId, username } = req.body;
-      postService.addPost(req.file.filename, description, userId, username);
+      const { description, userId, username, alt } = req.body;
+      postService.addPost(
+        req.file.filename,
+        description,
+        userId,
+        username,
+        alt
+      );
       res.json({ message: "post uploaded successfully: " });
     } catch (error) {
       res.status(400).json({ message: "Post not add" });

@@ -29,11 +29,11 @@ const postService = {
     const post = posts.find((post) => post.id === id);
     return post;
   },
-  addPost(image, description, userId, username) {
+  addPost(image, description, userId, username, alt) {
     const newPost = {
       id: findId() + 1,
       url: `images/${image}`,
-      alt: "image of men",
+      alt: alt,
       description: description,
       numOfLike: 0,
       username: username,

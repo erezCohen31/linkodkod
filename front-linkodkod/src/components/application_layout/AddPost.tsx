@@ -1,12 +1,15 @@
 import { useContext, useState } from "react";
 import "../../style/AddPostPage.css";
 import { UserContext } from "../../context/User.context";
+import { useNavigate } from "react-router";
 
 export default function AddPost() {
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [description, setDescription] = useState("");
+  const [alt, setAlt] = useState("");
   const token = localStorage.getItem("token");
   const { user } = useContext(UserContext);
+  const navigate = useNavigate();
 
   const handleImageChange = (event: any) => {
     setSelectedImage(event.target.files[0]);
@@ -25,6 +28,7 @@ export default function AddPost() {
     if (user) {
       formData.append("userId", user.id.toString());
       formData.append("username", user.name);
+      formData.append("alt", alt);
     }
 
     fetch("http://localhost:3000/api/post/image", {
@@ -36,6 +40,7 @@ export default function AddPost() {
     })
       .then((response) => console.log("Upload successful:", response))
       .catch((error) => console.error("Upload failed:", error));
+    navigate("/posts");
   };
   return (
     <div className="add-post-page">
@@ -47,7 +52,16 @@ export default function AddPost() {
           type="text"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          placeholder="enter your description"
+          placeholder="enter your post"
+          required
+        />
+        <input
+          id="alt"
+          name="alt"
+          type="text"
+          value={alt}
+          onChange={(e) => setAlt(e.target.value)}
+          placeholder="enter image description"
           required
         />
         <input type="file" onChange={handleImageChange} />

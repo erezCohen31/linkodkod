@@ -3,18 +3,25 @@ import "../../style/Post.css";
 import { useNavigate, useParams } from "react-router";
 import "../../style/PostPage.css";
 import type PostType from "../../interface/Post.ts";
+import { getPostByid } from "../../controller/PostController.ts";
 
 export default function PostPage() {
   const [likeState, useLikeState] = useState("like");
   const [post, setPost] = useState<PostType>();
   const [error, setError] = useState<any>();
+  const token = localStorage.getItem("token");
   const { id } = useParams();
 
   useEffect(() => {
-    fetch(`http://localhost:3000/api/post/${id}`)
-      .then((response) => response.json())
-      .then((fetchedData) => setPost(fetchedData))
-      .catch((error) => setError(JSON.parse(error)));
+    const fetchData = async () => {
+      const post = await getPostByid(token || "", id || "");
+      if (post) {
+        setPost(post);
+      } else {
+        setError(post);
+      }
+    };
+    fetchData();
   }, []);
 
   const navigate = useNavigate();

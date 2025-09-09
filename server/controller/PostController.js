@@ -5,6 +5,7 @@ const postController = {
     const description = req.body.description;
 
     postService.addPost(req.file.filename, description);
+    console.log(description);
 
     if (req.file) {
       res.send("Image uploaded successfully: " + req.file.filename);
@@ -29,6 +30,7 @@ const postController = {
   async getPostByid(req, res) {
     try {
       const { id } = req.params;
+
       const post = postService.getPostById(Number(id));
 
       if (!post) {

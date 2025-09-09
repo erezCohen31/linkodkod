@@ -2,6 +2,8 @@
 
 Application to stay in touch with kodkod share and enjoy
 
+## Front Side
+
 ## Technologies Used
 
 - **HTML5**

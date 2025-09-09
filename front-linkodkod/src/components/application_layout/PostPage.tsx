@@ -12,6 +12,9 @@ export default function PostPage() {
   const token = localStorage.getItem("token");
   const { id } = useParams();
 
+  {
+    /* fetch once to recover the post with recover thr id from the url */
+  }
   useEffect(() => {
     const fetchData = async () => {
       const post = await getPostByid(token || "", id || "");
@@ -30,11 +33,7 @@ export default function PostPage() {
     event.stopPropagation();
     useLikeState(likeState === "like-clicked" ? "like" : "like-clicked");
   };
-  {
-    console.log(id);
 
-    /*create post with the props*/
-  }
   if (error) {
     return <p>{error};</p>;
   }

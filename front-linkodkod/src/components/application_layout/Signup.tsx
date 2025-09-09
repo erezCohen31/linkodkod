@@ -21,6 +21,10 @@ export default function Signup() {
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
+  {
+    /* fetch on sumbit to connect recover the token and user change the context with our user 
+    and navigate to the posts page*/
+  }
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);

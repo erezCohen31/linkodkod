@@ -6,4 +6,5 @@ export default interface PostType {
   numOfLike: number;
   username: string;
   time: string;
+  userId: number;
 }

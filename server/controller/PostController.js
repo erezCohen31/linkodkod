@@ -2,13 +2,12 @@ import postService from "../service/postService.js";
 
 const postController = {
   async addPost(req, res) {
-    const description = req.body.description;
+    const { description, userId, username } = req.body;
 
-    postService.addPost(req.file.filename, description);
-    console.log(description);
+    postService.addPost(req.file.filename, description, userId, username);
 
     if (req.file) {
-      res.send("Image uploaded successfully: " + req.file.filename);
+      res.send("post uploaded successfully: ");
     } else {
       res.status(400).send("No image uploaded.");
     }

@@ -2,14 +2,12 @@ import postService from "../service/postService.js";
 
 const postController = {
   async addPost(req, res) {
-    const { description, userId, username } = req.body;
-
-    postService.addPost(req.file.filename, description, userId, username);
-
-    if (req.file) {
-      res.send("post uploaded successfully: ");
-    } else {
-      res.status(400).send("No image uploaded.");
+    try {
+      const { description, userId, username } = req.body;
+      postService.addPost(req.file.filename, description, userId, username);
+      res.json({ message: "post uploaded successfully: " });
+    } catch (error) {
+      res.status(400).json({ message: "Post not add" });
     }
   },
 
@@ -19,7 +17,6 @@ const postController = {
       if (!posts) {
         return res.status(404).json({ message: "Posts not found" });
       }
-
       res.json(posts);
     } catch (error) {
       res.status(500).json({ message: "Internal Server Error" });
@@ -29,13 +26,10 @@ const postController = {
   async getPostByid(req, res) {
     try {
       const { id } = req.params;
-
       const post = postService.getPostById(Number(id));
-
       if (!post) {
         return res.status(404).json({ message: "Post not found" });
       }
-
       res.json(post);
     } catch (error) {
       res.status(500).json({ message: "Internal Server Error" });

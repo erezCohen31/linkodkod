@@ -1,6 +1,4 @@
-import { log } from "console";
 import fs from "fs";
-import { json } from "stream/consumers";
 
 export function readFile(url) {
   try {
@@ -21,7 +19,6 @@ export function writeFile(url, post) {
     posts.push(post);
     const stringPost = JSON.stringify(posts);
     fs.writeFileSync(url, stringPost);
-    console.log("File written successfully.");
   } catch (error) {
     return error;
   }

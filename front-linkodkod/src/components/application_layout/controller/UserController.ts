@@ -5,9 +5,6 @@ async function handleResponse(response: Response) {
     const error = await response.json().catch(() => ({}));
     throw new Error(error.message || `HTTP error! status: ${response.status}`);
   }
-  if (response.status === 204) {
-    return null;
-  }
   const text = await response.text();
   return text ? JSON.parse(text) : null;
 }

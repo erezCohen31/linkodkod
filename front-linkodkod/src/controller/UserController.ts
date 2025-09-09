@@ -1,14 +1,16 @@
 const API_URL = "http://localhost:3000/api/auth";
 
+//handle to manage the responses
 async function handleResponse(response: Response) {
   if (!response.ok) {
     const error = await response.json().catch(() => ({}));
-    throw new Error(error.message || `HTTP error! status: ${response.status}`);
+    throw new Error(error.message || `message: ${response.statusText}`);
   }
   const text = await response.text();
   return text ? JSON.parse(text) : null;
 }
 
+//fetch for login
 export async function login(mail: string, password: string) {
   const url = `${API_URL}/login`;
 
@@ -23,6 +25,7 @@ export async function login(mail: string, password: string) {
   return handleResponse(response);
 }
 
+//fetch for signup
 export async function signup(name: string, mail: string, password: string) {
   const url = `${API_URL}/signup`;
 

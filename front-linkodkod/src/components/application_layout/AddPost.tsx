@@ -8,7 +8,9 @@ export default function AddPost() {
   const handleImageChange = (event: any) => {
     setSelectedImage(event.target.files[0]);
   };
-
+  {
+    /* fetch on sumbit to send the post*/
+  }
   const handleSumbit = () => {
     const formData = new FormData();
     if (selectedImage) {

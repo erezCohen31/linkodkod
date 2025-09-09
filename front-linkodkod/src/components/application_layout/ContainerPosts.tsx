@@ -11,6 +11,9 @@ export default function PostsPage() {
   const { user } = useContext(UserContext);
   const token = localStorage.getItem("token");
 
+  {
+    /* fetch once to recover the posts */
+  }
   useEffect(() => {
     const fetchData = async () => {
       const posts = await getAllPosts(token || "");
@@ -22,10 +25,6 @@ export default function PostsPage() {
     };
     fetchData();
   }, []);
-
-  {
-    /*map of the posts to create post */
-  }
 
   if (!posts) {
     return <div>{"loading"}</div>;

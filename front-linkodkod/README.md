@@ -14,7 +14,7 @@ Application to stay in touch with kodkod share and enjoy
 
 ```
 front-linkodkod/
-├── src
+└── src
      │  ├── main.tsx
      │  ├── App.tsx
      ├── style/
@@ -53,12 +53,10 @@ front-linkodkod/
          ├── SignupForm.ts            # interface of the form signup
          ├── UserType.ts              # interface of the user
          └── PostsPageProps.ts        # interface of the props container post
-
+```
 
 ## To run
 
 -clone it
 -npm i
 -npm run dev
-
-```

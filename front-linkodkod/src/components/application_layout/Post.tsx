@@ -2,13 +2,10 @@ import { useState } from "react";
 import type PostProps from "../../interface/PostProps.ts";
 import "../../style/Post.css";
 import { useNavigate } from "react-router";
-import { useContext } from "react";
-import { PostContext } from "../../context/PostProvider.tsx";
 
 export default function Post({ post }: PostProps) {
   const [likeState, useLikeState] = useState("like");
   const navigate = useNavigate();
-  const { setPostContext } = useContext(PostContext);
   const clickLike = (event: any) => {
     event.stopPropagation();
     useLikeState(likeState === "like-clicked" ? "like" : "like-clicked");
@@ -21,7 +18,6 @@ export default function Post({ post }: PostProps) {
     <div
       className="post"
       onClick={() => {
-        setPostContext(post);
         navigate(`../post/${post.id}`);
       }}
     >

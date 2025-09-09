@@ -36,7 +36,7 @@ export default function PostsPage() {
 
   return (
     posts && (
-      <div>
+      <div className="home">
         <h1>Welcome {user?.name}</h1>
         <div className="container-posts">
           {posts?.map((post, index) => (

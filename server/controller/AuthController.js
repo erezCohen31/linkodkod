@@ -1,33 +1,39 @@
-import { generateToken } from "../utils/generateToken";
+import { generateToken } from "../utils/generateToken.js";
 import authService from "../service/authService.js";
 
 const authController = {
   async signup(req, res) {
     try {
-      const { name, email, password } = req.body;
-      const user = authService.createUser(name, email, password);
-      const token = generateToken(user._id.toString());
-      res.json({
-        user: { name: user.name, email: user.email },
-        token,
-      });
-    } catch (err) {
-      res.status(400).json({ error: err.message });
-    }
+      const { name, mail, password } = req.body;
+      const user = await authService.createUser(name, mail, password);
+      if (user) {
+        const token = generateToken(user.id.toString());
+        console.log(token);
+        res.json({
+          user: { id: user.id, name: user.name, email: user.email },
+          token,
+        });
+      }
+      return res.status(400).json({ error: "user exist" });
+    } catch (err) {}
   },
   async login(req, res) {
     try {
-      const { email, password } = req.body;
-      const user = authService.compareUser(email, password);
-      const token = generateToken(user.name.toString());
-      res.json({
-        user: { name: user.name, email: user.email },
-        token,
-      });
-    } catch (err) {
-      res.status(400).json({ error: err.message });
-    }
+      const { mail, password } = req.body;
+      const user = await authService.compareUser(mail, password);
+      if (user) {
+        const token = generateToken(user.id.toString());
+        res.json({
+          user: { id: user.id, name: user.name, email: user.email },
+          token,
+        });
+      }
+      return res.status(400).json({ error: "mail or password not good" });
+    } catch (err) {}
   },
 };
 
 export default authController;
+
+console.log(await authController.signup("ed", "ed", "ed"));
+console.log(await authController.login("ed", "ed"));

@@ -18,7 +18,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
 
 app.use("/api/post", PostRoutes);
-app.use("api/auth", AuthRoutes);
+app.use("/api/auth", AuthRoutes);
 
 app.listen(port, () =>
   console.log(`Server running at http://localhost:${port}`)

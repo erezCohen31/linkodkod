@@ -4,33 +4,44 @@ import bcrypt from "bcrypt";
 
 function findUser(mail) {
   const users = readFile(userPath);
-  const user = users.find((user) => user.mail === mail);
-  return user;
+  if (users.length > 0) {
+    const user = users.find((user) => user.mail === mail);
+    return user;
+  }
+  return null;
 }
 function findId() {
-  const posts = readFile(userPath);
-  const id = Math.max(...posts.map((o) => o.id));
-  return id;
+  const users = readFile(userPath);
+  if (users.length > 0) {
+    const id = Math.max(...users.map((o) => o.id));
+    return id;
+  }
+  return 1;
 }
 const authService = {
   async createUser(name, mail, password) {
     const foundUser = findUser(mail);
+
     if (!foundUser) {
-      user.password = await bcrypt.hash(user.password, 10);
+      const hashedPassword = await bcrypt.hash(password, 10);
       const newUser = {
+        id: findId() + 1,
         name,
         mail,
-        password,
+        password: hashedPassword,
       };
       writeFile(userPath, newUser);
-      return true;
+      return newUser;
     }
     return false;
   },
   async compareUser(mail, password) {
     const foundUser = findUser(mail);
-    if (!foundUser && (await bcrypt.compare(password, findUser.password))) {
-      return findUser;
+    if (foundUser) {
+      const valid = await bcrypt.compare(password, foundUser.password);
+    }
+    if (foundUser && valid) {
+      return foundUser;
     }
     return false;
   },

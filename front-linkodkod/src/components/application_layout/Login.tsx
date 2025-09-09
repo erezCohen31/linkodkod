@@ -24,14 +24,17 @@ export default function Login() {
     e.preventDefault();
     setLoading(true);
     try {
-      const { user, token } = await login(form.mail, form.password);
+      const { user, token, error } = await login(form.mail, form.password);
+      if (error) {
+        setError(error);
+        return;
+      }
       localStorage.setItem("token", token);
       setUser(user);
       navigate("/posts");
       setError("");
     } catch (error: any) {
       setError(error.message);
-      console.log(error.message);
     } finally {
       setLoading(false);
     }

@@ -29,13 +29,21 @@ export default function Signup() {
     e.preventDefault();
     setLoading(true);
     try {
-      const { user, token } = await signup(form.name, form.mail, form.password);
+      const { user, token, error } = await signup(
+        form.name,
+        form.mail,
+        form.password
+      );
+      if (error) {
+        setError(error);
+        return;
+      }
       localStorage.setItem("token", token);
       setUser(user);
       navigate("/posts");
       setError("");
-    } catch (err: any) {
-      setError(err.message);
+    } catch (error: any) {
+      setError(error.message);
     } finally {
       setLoading(false);
     }

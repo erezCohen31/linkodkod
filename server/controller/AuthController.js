@@ -15,13 +15,14 @@ const authController = {
         });
       }
       return res.status(400).json({ error: "user exist" });
-    } catch (err) {}
+    } catch (err) {
+      res.status(500).json({ message: "Internal Server Error" });
+    }
   },
   async login(req, res) {
     try {
       const { mail, password } = req.body;
       const user = await authService.compareUser(mail, password);
-
       if (user) {
         const token = generateToken(user.id.toString());
         res.json({
@@ -29,8 +30,10 @@ const authController = {
           token,
         });
       }
-      return res.status(400).json({ error: "mail or password not good" });
-    } catch (err) {}
+      return res.status(400).json({ message: "mail or password not good" });
+    } catch (err) {
+      res.status(500).json({ message: "Internal Server Error" });
+    }
   },
 };
 

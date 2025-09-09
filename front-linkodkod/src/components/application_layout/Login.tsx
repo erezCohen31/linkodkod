@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { use, useContext, useState } from "react";
 import { useNavigate } from "react-router";
 import type LoginForm from "../../interface/loginForm.ts";
 import { login } from "../../controller/UserController.ts";
@@ -26,13 +26,12 @@ export default function Login() {
     try {
       const { user, token } = await login(form.mail, form.password);
       localStorage.setItem("token", token);
-      console.log(token);
-
       setUser(user);
       navigate("/posts");
       setError("");
-    } catch (err: any) {
-      setError(err.message);
+    } catch (error: any) {
+      setError(error.message);
+      console.log(error.message);
     } finally {
       setLoading(false);
     }

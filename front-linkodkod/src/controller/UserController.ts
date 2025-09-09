@@ -3,8 +3,8 @@ const API_URL = "http://localhost:3000/api/auth";
 //handle to manage the responses
 async function handleResponse(response: Response) {
   if (!response.ok) {
-    const error = await response.json().catch(() => ({}));
-    throw new Error(error.message || `message: ${response.statusText}`);
+    const error = await response.json().catch();
+    throw new Error(error.message);
   }
   const text = await response.text();
   return text ? JSON.parse(text) : null;
@@ -27,19 +27,22 @@ export async function login(mail: string, password: string) {
 
 //fetch for signup
 export async function signup(name: string, mail: string, password: string) {
-  const url = `${API_URL}/signup`;
+  try {
+    const url = `${API_URL}/signup`;
 
-  const response = await fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      name: name.trim(),
-      mail: mail.trim(),
-      password: password.trim(),
-    }),
-  });
-
-  return handleResponse(response);
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: name.trim(),
+        mail: mail.trim(),
+        password: password.trim(),
+      }),
+    });
+    return response;
+  } catch (error: any) {
+    return error;
+  }
 }

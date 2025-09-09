@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router";
+import "../../style/Connect.css";
 
 export default function Connect() {
   const navigate = useNavigate();

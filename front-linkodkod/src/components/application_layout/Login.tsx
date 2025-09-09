@@ -3,6 +3,7 @@ import { useNavigate } from "react-router";
 import type LoginForm from "../../interface/loginForm.ts";
 import { login } from "../../controller/UserController.ts";
 import { UserContext } from "../../context/User.context.tsx";
+import "../../style/Login.css";
 
 export default function Login() {
   const [form, setForm] = useState<LoginForm>({ mail: "", password: "" });

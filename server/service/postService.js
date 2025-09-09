@@ -29,16 +29,18 @@ const postService = {
     const post = posts.find((post) => post.id === id);
     return post;
   },
-  addPost(image, description) {
+  addPost(image, description, userId, username) {
     const newPost = {
       id: findId() + 1,
       url: `images/${image}`,
       alt: "image of men",
       description: description,
       numOfLike: 0,
-      username: "erez",
+      username: username,
       time: getTime(),
+      userId: userId,
     };
+
     writeFile(postPath, newPost);
   },
 };

@@ -1,9 +1,12 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "../../style/AddPostPage.css";
+import { UserContext } from "../../context/User.context";
 
 export default function AddPost() {
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [description, setDescription] = useState("");
+  const token = localStorage.getItem("token");
+  const { user } = useContext(UserContext);
 
   const handleImageChange = (event: any) => {
     setSelectedImage(event.target.files[0]);
@@ -11,19 +14,27 @@ export default function AddPost() {
   {
     /* fetch on sumbit to send the post*/
   }
-  const handleSumbit = () => {
+  const handleSumbit = (event: any) => {
+    event.preventDefault();
+
     const formData = new FormData();
     if (selectedImage) {
       formData.append("image", selectedImage, selectedImage.name);
     }
     formData.append("description", description);
+    if (user) {
+      formData.append("userId", user.id.toString());
+      formData.append("username", user.name);
+    }
 
     fetch("http://localhost:3000/api/post/image", {
       method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
       body: formData,
     })
-      .then((response) => response.json())
-      .then((data) => console.log("Upload successful:", data))
+      .then((response) => console.log("Upload successful:", response))
       .catch((error) => console.error("Upload failed:", error));
   };
   return (

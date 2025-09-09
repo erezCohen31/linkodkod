@@ -26,6 +26,8 @@ export default function Login() {
     try {
       const { user, token } = await login(form.mail, form.password);
       localStorage.setItem("token", token);
+      console.log(token);
+
       setUser(user);
       navigate("/posts");
       setError("");

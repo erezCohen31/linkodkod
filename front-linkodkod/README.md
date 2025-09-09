@@ -18,19 +18,41 @@ front-linkodkod/
      │  ├── main.tsx
      │  ├── App.tsx
      ├── style/
-     │   ├── Header.css           # Header style
-     │   ├── Post.css             # Post styles
-     │   └── PostsPage.css        # container posts styles
+     │   ├── AddPostPage.css          # addpost page style
+     │   ├── Connect.css              # connect page style
+     │   ├── ContainerPosts.css       # Posts page style
+     │   ├── Footer.css               # Footer style
+     │   ├── Header.css               # Header style
+     │   ├── Login.css                # Login page style
+     │   ├── Navbar.css               # Navbar style
+     │   ├── Post.css                 # Post style
+     │   └── PostsPage.css            # container posts style
      ├── components/
-     │   ├── Layout.tsx           # Layout page
+     │   ├── Layout.tsx               # Layout page
      │   └── application_layout/
-     │       ├── Header.tsx       # content header
-     │       ├── Post.tsx         # create post
-     │       └──  PostPage.tsx    # contain the post
+     │       ├── AddPost.tsx          # content addpost
+     │       ├── Connect.tsx          # content choice to connect
+     │       ├── ContainerPosts.tsx   # content posts page
+     │       ├── Footer.tsx           # footer content
+     │       ├── Header.tsx           # header content
+     │       ├── Login.tsx            # login page
+     │       ├── Navbar.tsx           # navbar content
+     │       ├── Post.tsx             # content post
+     │       ├── PostPage.tsx         # content post in all page
+     │       └── Signup.tsx           # signup page
+     ├── context/
+     │   └── User.context.tsx         # user context
+     ├── controller/
+     │       ├── PostController.ts    # post controller
+     │       └── UserController.ts    # user controller
      └──── interface/
-         ├── Post.ts              # interface of the post
-         ├── PostProps.ts         # interface oh the props post
-         └── PostsPageProps.ts    # interface of the props container post
+         ├── Post.ts                  # interface of the post
+         ├── PostProps.ts             # interface of the props post
+         ├── loginForm.ts             # interface of the form login
+         ├── PostPageProps.ts         # interface of the props post pages
+         ├── SignupForm.ts            # interface of the form signup
+         ├── UserType.ts              # interface of the user
+         └── PostsPageProps.ts        # interface of the props container post
 
 
 ## To run

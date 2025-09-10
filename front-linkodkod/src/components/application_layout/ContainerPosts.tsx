@@ -38,8 +38,8 @@ export default function PostsPage() {
       <div className="home">
         <h1>Welcome {user?.name}</h1>
         <div className="container-posts">
-          {posts?.map((post, index) => (
-            <Post key={index} post={post} />
+          {posts?.map((post) => (
+            <Post key={post.id} post={post} />
           ))}
         </div>
       </div>

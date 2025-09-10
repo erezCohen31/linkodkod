@@ -36,3 +36,27 @@ export async function getPostByid(
     return error;
   }
 }
+
+export async function updateLike(
+  token: string,
+  id: number,
+  numOfLike: number
+): Promise<number> {
+  try {
+    const response = await fetch(`${API_URL}/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ numOfLike }),
+    });
+
+    const newLikeCount: string = await response.text();
+    console.log(newLikeCount);
+
+    return Number(newLikeCount);
+  } catch (error: any) {
+    return error;
+  }
+}

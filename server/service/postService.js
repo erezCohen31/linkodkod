@@ -1,6 +1,14 @@
 import { readFile, writeFile } from "../utils/file.js";
 const postPath = "public/posts.json";
 
+function findPost(id) {
+  const posts = readFile(postPath);
+  if (posts.length > 0) {
+    const post = posts.find((post) => post.id === id);
+    return post;
+  }
+  return null;
+}
 function findId() {
   const posts = readFile(postPath);
   const id = Math.max(...posts.map((o) => o.id));
@@ -42,6 +50,12 @@ const postService = {
     };
 
     writeFile(postPath, newPost);
+  },
+  updateLikeCount(id, numOfLike) {
+    const post = findPost(id);
+    post.numOfLike = numOfLike;
+    writeFile(postPath, post);
+    return post.numOfLike;
   },
 };
 

@@ -41,6 +41,23 @@ const postController = {
       res.status(500).json({ message: "Internal Server Error" });
     }
   },
+  async updateLikeCount(req, res) {
+    try {
+      const { id } = req.params;
+      const { numOfLike } = req.body;
+      const newLikeCount = postService.updateLikeCount(
+        Number(id),
+        Number(numOfLike)
+      );
+      if (!newLikeCount) {
+        return res.status(404).json({ message: "Post not found" });
+      }
+      const newLikeCountStr = newLikeCount.toString();
+      res.send(newLikeCountStr);
+    } catch (error) {
+      res.status(500).json({ message: "Internal Server Error" });
+    }
+  },
 };
 
 export default postController;

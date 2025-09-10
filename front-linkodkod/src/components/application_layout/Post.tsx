@@ -2,13 +2,24 @@ import { useState } from "react";
 import type PostProps from "../../interface/PostProps.ts";
 import "../../style/Post.css";
 import { useNavigate } from "react-router";
+import { updateLike } from "../../controller/PostController.ts";
 
 export default function Post({ post }: PostProps) {
   const [likeState, useLikeState] = useState("like");
+  const [currentLike, setCurrentLike] = useState(post.numOfLike);
   const navigate = useNavigate();
-  const clickLike = (event: any) => {
+  const token = localStorage.getItem("token");
+  const clickLike = async (event: any) => {
     event.stopPropagation();
     useLikeState(likeState === "like-clicked" ? "like" : "like-clicked");
+    let updatedLike;
+
+    if (likeState === "like") {
+      updatedLike = await updateLike(token || "", post.id, currentLike + 1);
+    } else {
+      updatedLike = await updateLike(token || "", post.id, currentLike - 1);
+    }
+    setCurrentLike(updatedLike);
   };
 
   {
@@ -30,10 +41,10 @@ export default function Post({ post }: PostProps) {
       <div className="post-information">
         <div className="container-like">
           <div className={likeState} onClick={clickLike}></div>
-          <p>{post.numOfLike}</p>
+          <p>{currentLike}</p>
         </div>
         <p>{post.username}</p>
-        <time dateTime="20:00">{post.time}</time>
+        <time dateTime={post.time}>{post.time}</time>
       </div>
     </div>
   );

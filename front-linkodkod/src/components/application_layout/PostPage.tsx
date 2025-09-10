@@ -21,6 +21,12 @@ export default function PostPage() {
   const { id } = useParams();
   const [deleted, setDeleted] = useState(false);
 
+  {
+    /*almost everything is repeated with post but I did not manage to make one */
+  }
+  {
+    /*update like count */
+  }
   const clickLike = async (event: any) => {
     event.stopPropagation();
     useLikeState(likeState === "like-clicked" ? "like" : "like-clicked");

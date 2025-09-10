@@ -18,7 +18,7 @@ export async function getAllPosts(token: string) {
   }
 }
 
-//fetch for add post
+//fetch for recover post by id
 export async function getPostByid(
   token: string,
   id: string
@@ -37,6 +37,7 @@ export async function getPostByid(
   }
 }
 
+//fetch for update like count
 export async function updateLike(
   token: string,
   id: number,
@@ -59,6 +60,7 @@ export async function updateLike(
   }
 }
 
+//fetch for delete post by id
 export async function deleteMyPost(
   token: string,
   postId: number
@@ -80,7 +82,7 @@ export async function deleteMyPost(
   }
 }
 
-//fetch for add post
+//fetch for recover post by user
 export async function getMyPost(token: string, userId: number) {
   try {
     const response = await fetch(`${API_URL}/mypost/${userId}`, {

@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { UserContext } from "../../context/User.context";
 
 export default function Navbar() {
-  const { user, setUser } = useContext(UserContext);
+  const { user } = useContext(UserContext);
 
   return (
     <>

@@ -1,5 +1,5 @@
 import multer from "multer";
-
+//middleware for recor the image in the server
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "public/images");

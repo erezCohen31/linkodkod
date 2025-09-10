@@ -13,7 +13,9 @@ export default function Post({ post }: PostProps) {
   const { user } = useContext(UserContext);
   const my = post.userId == user?.id;
   const [deleted, setDeleted] = useState(false);
-
+  {
+    /*update like count */
+  }
   const clickLike = async (event: any) => {
     event.stopPropagation();
     useLikeState(likeState === "like-clicked" ? "like" : "like-clicked");

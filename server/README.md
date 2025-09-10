@@ -50,4 +50,4 @@ server/
 -create file users.json
 -create subfile images
 -create .env with PORT and JWT_SECRET or use with the one in the code
--node .\app.js
+-npm start

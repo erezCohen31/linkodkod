@@ -10,11 +10,13 @@ const postUtils = {
     }
     return null;
   },
+
   findPostByid(postId) {
     const posts = readFile(postPath);
     const post = posts.find((post) => post.id === Number(postId));
     return post.userId;
   },
+
   findId() {
     const posts = readFile(postPath);
     if (posts.length > 0) {
@@ -23,6 +25,7 @@ const postUtils = {
     }
     return 0;
   },
+
   getTime() {
     const timestamp = Date.now();
     const dateObject = new Date(timestamp);

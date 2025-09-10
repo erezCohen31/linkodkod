@@ -38,7 +38,7 @@ front-linkodkod/
      │       ├── Footer.tsx           # footer content
      │       ├── Header.tsx           # header content
      │       ├── Login.tsx            # login page
-     │       ├── MyPost.tsx           # conatiner post of user
+     │       ├── MyPost.tsx           # container post of user
      │       ├── Navbar.tsx           # navbar content
      │       ├── Post.tsx             # content post
      │       ├── PostPage.tsx         # content post in all page
@@ -63,3 +63,7 @@ front-linkodkod/
 -clone it
 -npm i
 -npm run dev
+
+## Second option
+
+-you can use https://linkodkod.netlify.app/ and change the url https://linkodkod-e6pi.onrender.com/ to fetch

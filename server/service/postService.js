@@ -51,7 +51,6 @@ const postService = {
   updateLikeCount(id, numOfLike) {
     const post = postUtils.findPost(id);
     post.numOfLike = numOfLike;
-    writeFile(postPath, post);
     return post.numOfLike;
   },
 };

@@ -37,10 +37,14 @@ export default function PostPage() {
         updatedLike = await updateLike(
           token || "",
           post.id,
-          post.numOfLike + 1
+          (currentLike ?? 0) + 1
         );
       } else {
-        updatedLike = await updateLike(token || "", post.id, post.numOfLike);
+        updatedLike = await updateLike(
+          token || "",
+          post.id,
+          (currentLike ?? 0) - 1
+        );
       }
       setCurrentLike(updatedLike);
     }
@@ -70,6 +74,9 @@ export default function PostPage() {
     };
     fetchData();
   }, []);
+  useEffect(() => {
+    setCurrentLike(post?.numOfLike);
+  }, [post]);
 
   const navigate = useNavigate();
 
@@ -96,7 +103,7 @@ export default function PostPage() {
         <div className="post-information">
           <div className="container-like">
             <div className={likeState} onClick={clickLike}></div>
-            <p>{currentLike || post?.numOfLike}</p>
+            <p>{currentLike}</p>
           </div>
           <p>{post?.username}</p>
           <time dateTime={post?.time}>{post?.time}</time>

@@ -23,3 +23,11 @@ export function writeFile(url, post) {
     return error;
   }
 }
+export function deletePostFile(url, posts) {
+  try {
+    const stringPost = JSON.stringify(posts);
+    fs.writeFileSync(url, stringPost);
+  } catch (error) {
+    return error;
+  }
+}

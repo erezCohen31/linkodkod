@@ -3,9 +3,9 @@ import "../../style/ContainerPosts.css";
 import { useContext, useEffect, useState } from "react";
 import type PostType from "../../interface/Post.ts";
 import { UserContext } from "../../context/User.context.tsx";
-import { getAllPosts } from "../../controller/PostController.ts";
+import { getMyPost } from "../../controller/PostController.ts";
 
-export default function PostsPage() {
+export default function MyPost() {
   const [posts, setPosts] = useState<PostType[]>();
   const [error, setError] = useState<any>();
   const { user } = useContext(UserContext);
@@ -16,7 +16,8 @@ export default function PostsPage() {
   }
   useEffect(() => {
     const fetchData = async () => {
-      const posts = await getAllPosts(token || "");
+      const posts = await getMyPost(token || "", user?.id || 0);
+      console.log(user);
 
       if (posts) {
         setPosts(posts);

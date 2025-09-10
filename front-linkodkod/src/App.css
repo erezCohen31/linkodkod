@@ -8,3 +8,6 @@ button {
 button:hover {
   background-color: #0b2e48;
 }
+.material-symbols-outlined:hover {
+  color: red;
+}

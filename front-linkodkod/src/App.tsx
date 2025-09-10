@@ -8,6 +8,7 @@ import Connect from "./components/application_layout/Connect.tsx";
 import Signup from "./components/application_layout/Signup.tsx";
 import Login from "./components/application_layout/Login.tsx";
 import { UserProvider } from "./context/User.context.tsx";
+import MyPost from "./components/application_layout/MyPost.tsx";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
               <Route path="/posts" element={<PostsPage />} />
               <Route path="/post/:id" element={<PostPage />} />
               <Route path="/add-post" element={<AddPost />} />
+              <Route path="/my-post" element={<MyPost />} />
             </Route>
           </Routes>
         </UserProvider>

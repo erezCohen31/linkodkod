@@ -1,14 +1,19 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import type PostProps from "../../interface/PostProps.ts";
 import "../../style/Post.css";
 import { useNavigate } from "react-router";
-import { updateLike } from "../../controller/PostController.ts";
+import { updateLike, deleteMyPost } from "../../controller/PostController.ts";
+import { UserContext } from "../../context/User.context.tsx";
 
 export default function Post({ post }: PostProps) {
   const [likeState, useLikeState] = useState("like");
   const [currentLike, setCurrentLike] = useState(post.numOfLike);
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
+  const { user } = useContext(UserContext);
+  const my = post.userId == user?.id;
+  const [deleted, setDeleted] = useState(false);
+
   const clickLike = async (event: any) => {
     event.stopPropagation();
     useLikeState(likeState === "like-clicked" ? "like" : "like-clicked");
@@ -21,9 +26,18 @@ export default function Post({ post }: PostProps) {
     }
     setCurrentLike(updatedLike);
   };
+  const deletePost = async (event: any) => {
+    event.stopPropagation();
+    const isDeleted = await deleteMyPost(token || "", post.id);
+    setDeleted(isDeleted);
+    console.log(isDeleted);
+  };
 
   {
     /*create post with the props*/
+  }
+  if (deleted) {
+    return <></>;
   }
   return (
     <div
@@ -45,6 +59,11 @@ export default function Post({ post }: PostProps) {
         </div>
         <p>{post.username}</p>
         <time dateTime={post.time}>{post.time}</time>
+        {my && (
+          <span onClick={deletePost} className="material-symbols-outlined">
+            delete
+          </span>
+        )}
       </div>
     </div>
   );

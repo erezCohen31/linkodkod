@@ -53,9 +53,44 @@ export async function updateLike(
     });
 
     const newLikeCount: string = await response.text();
-    console.log(newLikeCount);
-
     return Number(newLikeCount);
+  } catch (error: any) {
+    return error;
+  }
+}
+
+export async function deleteMyPost(
+  token: string,
+  postId: number
+): Promise<boolean> {
+  try {
+    const response = await fetch(`${API_URL}/delete/${postId}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    console.log(response);
+
+    const isDeletedStr: string = await response.text();
+    return Boolean(isDeletedStr);
+  } catch (error: any) {
+    return error;
+  }
+}
+
+//fetch for add post
+export async function getMyPost(token: string, userId: number) {
+  try {
+    const response = await fetch(`${API_URL}/mypost/${userId}`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const post: PostType = await response.json();
+    return post;
   } catch (error: any) {
     return error;
   }

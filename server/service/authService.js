@@ -1,34 +1,17 @@
-import { readFile, writeFile } from "../utils/file.js";
+import { writeFile } from "../utils/file.js";
 const userPath = "public/users.json";
 import bcrypt from "bcrypt";
+import authUtils from "../utils/authUtils.js";
 
-function findUser(mail, username = "") {
-  const users = readFile(userPath);
-  if (users.length > 0) {
-    const userMail = users.find((user) => user.mail === mail);
-    const userNamec = users.find((user) => user.userName === username);
-    if (userMail || userNamec) {
-      return userMail;
-    }
-  }
-  return false;
-}
-export function findId() {
-  const users = readFile(userPath);
-  if (users.length > 0) {
-    const id = Math.max(...users.map((o) => o.id));
-    return id;
-  }
-  return 0;
-}
 const authService = {
   async createUser(name, mail, password) {
-    const foundUser = findUser(mail);
+    const foundUser = authUtils.findUser(mail, name);
+    console.log(foundUser);
 
     if (!foundUser) {
       const hashedPassword = await bcrypt.hash(password, 10);
       const newUser = {
-        id: findId() + 1,
+        id: authUtils.findId() + 1,
         name,
         mail,
         password: hashedPassword,
@@ -41,7 +24,7 @@ const authService = {
   },
   async compareUser(mail, password) {
     let valid;
-    const foundUser = findUser(mail);
+    const foundUser = authUtils.findUser(mail);
 
     if (foundUser) {
       valid = await bcrypt.compare(password, foundUser.password);

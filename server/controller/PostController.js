@@ -1,6 +1,7 @@
 import postService from "../service/postService.js";
 
 const postController = {
+  // recover the data and add the post retrun message if succes or not
   async addPost(req, res) {
     try {
       const { description, userId, username, alt } = req.body;
@@ -17,6 +18,7 @@ const postController = {
     }
   },
 
+  //recover the posts from the json and send them
   async getAllPosts(req, res) {
     try {
       const posts = postService.getAllPost();
@@ -28,6 +30,8 @@ const postController = {
       res.status(500).json({ error: "Internal Server Error" });
     }
   },
+
+  //recover all posts by user
   async getMyPost(req, res) {
     try {
       const { userId } = req.params;
@@ -43,6 +47,7 @@ const postController = {
     }
   },
 
+  //recover post by id
   async getPostByid(req, res) {
     try {
       const { id } = req.params;
@@ -55,6 +60,8 @@ const postController = {
       res.status(500).json({ error: "Internal Server Error" });
     }
   },
+
+  //update the like count
   async updateLikeCount(req, res) {
     try {
       const { id } = req.params;
@@ -72,6 +79,8 @@ const postController = {
       res.status(500).json({ error: "Internal Server Error" });
     }
   },
+
+  //delete th epost by id and return true if deleted or error
   async deletePost(req, res) {
     try {
       const { postId } = req.params;

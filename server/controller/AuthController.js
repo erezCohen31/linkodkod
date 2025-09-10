@@ -2,6 +2,7 @@ import { generateToken } from "../utils/generateToken.js";
 import authService from "../service/authService.js";
 
 const authController = {
+  //verify if user not exist create and return it
   async signup(req, res) {
     try {
       const { name, mail, password } = req.body;
@@ -24,6 +25,8 @@ const authController = {
       res.status(500).json({ error: "Internal Server Error" });
     }
   },
+
+  // verify if field good and retrun user
   async login(req, res) {
     try {
       const { mail, password } = req.body;

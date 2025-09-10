@@ -3,8 +3,6 @@ import { readFile, writeFile } from "../utils/file.js";
 
 const authUtils = {
   findUser(mail, username = "") {
-    console.log("in utils");
-
     const users = readFile(userPath);
     if (users.length > 0) {
       const userMail = users.find((user) => user.mail === mail);
@@ -15,6 +13,7 @@ const authUtils = {
     }
     return false;
   },
+
   findId() {
     const users = readFile(userPath);
     if (users.length > 0) {

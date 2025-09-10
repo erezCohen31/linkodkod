@@ -16,6 +16,9 @@
   height: 150px;
   background-image: url("../assets/logo.jpeg");
 }
+.logo:hover {
+  cursor: pointer;
+}
 .exit-button {
   max-height: 40px;
   background-color: #032641;

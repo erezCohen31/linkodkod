@@ -8,7 +8,12 @@ export default function Header() {
   const navigate = useNavigate();
   return (
     <div className="header">
-      <div className="logo"></div>
+      <div
+        onClick={() => {
+          user ? navigate("/posts") : navigate("../");
+        }}
+        className="logo"
+      ></div>
       <h1>you protect us we bind you</h1>
       {user && (
         <button
@@ -16,7 +21,7 @@ export default function Header() {
           onClick={() => {
             setUser(null);
             localStorage.clear();
-            navigate("../");
+            navigate("/");
           }}
         >
           exit

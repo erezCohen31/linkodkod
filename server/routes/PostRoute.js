@@ -14,5 +14,6 @@ router.post(
 router.get("/", verifyToken, postController.getAllPosts);
 router.get("/:id", verifyToken, postController.getPostByid);
 router.put("/:id", verifyToken, postController.updateLikeCount);
+router.get("/mypost/:userId", verifyToken, postController.getMyPost);
 
 export default router;

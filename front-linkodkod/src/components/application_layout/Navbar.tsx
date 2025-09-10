@@ -10,7 +10,7 @@ export default function Navbar() {
       <NavLink className={"navlink"} to="/add-post">
         Add Post
       </NavLink>
-      <NavLink className={"navlink"} to="/My Post">
+      <NavLink className={"navlink"} to="/my-Post">
         My Posts
       </NavLink>
     </div>

@@ -28,6 +28,20 @@ const postController = {
       res.status(500).json({ error: "Internal Server Error" });
     }
   },
+  async getMyPost(req, res) {
+    try {
+      const { userId } = req.params;
+      console.log(userId);
+
+      const posts = postService.getMyPost(userId);
+      if (!posts) {
+        return res.status(404).json({ error: "Posts not found" });
+      }
+      res.json(posts);
+    } catch (error) {
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  },
 
   async getPostByid(req, res) {
     try {

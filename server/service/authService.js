@@ -2,13 +2,16 @@ import { readFile, writeFile } from "../utils/file.js";
 const userPath = "public/users.json";
 import bcrypt from "bcrypt";
 
-function findUser(mail) {
+function findUser(mail, username = "") {
   const users = readFile(userPath);
   if (users.length > 0) {
-    const user = users.find((user) => user.mail === mail);
-    return user;
+    const userMail = users.find((user) => user.mail === mail);
+    const userNamec = users.find((user) => user.userName === username);
+    if (userMail || userNamec) {
+      return userMail;
+    }
   }
-  return null;
+  return false;
 }
 export function findId() {
   const users = readFile(userPath);

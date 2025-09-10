@@ -31,6 +31,13 @@ const postService = {
     const posts = readFile(postPath);
     return posts;
   },
+  getMyPost(userId) {
+    console.log(userId);
+
+    const posts = readFile(postPath);
+    const myPosts = posts.filter((post) => post.userId === userId);
+    return myPosts;
+  },
 
   getPostById(id) {
     const posts = readFile(postPath);

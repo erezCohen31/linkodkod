@@ -60,3 +60,19 @@ export async function updateLike(
     return error;
   }
 }
+
+//fetch for add post
+export async function getMyPost(token: string, userId: number) {
+  try {
+    const response = await fetch(`${API_URL}/mypost/${userId}`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const post: PostType = await response.json();
+    return post;
+  } catch (error: any) {
+    return error;
+  }
+}

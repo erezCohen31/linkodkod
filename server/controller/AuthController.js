@@ -33,6 +33,7 @@ const authController = {
           error: " missing field(s)",
         });
       }
+
       const user = await authService.compareUser(mail, password);
       if (user) {
         const token = generateToken(user.id.toString());

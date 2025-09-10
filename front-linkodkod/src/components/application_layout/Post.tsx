@@ -1,14 +1,18 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import type PostProps from "../../interface/PostProps.ts";
 import "../../style/Post.css";
 import { useNavigate } from "react-router";
 import { updateLike } from "../../controller/PostController.ts";
+import { UserContext } from "../../context/User.context.tsx";
 
 export default function Post({ post }: PostProps) {
   const [likeState, useLikeState] = useState("like");
   const [currentLike, setCurrentLike] = useState(post.numOfLike);
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
+  const { user } = useContext(UserContext);
+  const my = post.userId == user?.id;
+
   const clickLike = async (event: any) => {
     event.stopPropagation();
     useLikeState(likeState === "like-clicked" ? "like" : "like-clicked");
@@ -45,6 +49,7 @@ export default function Post({ post }: PostProps) {
         </div>
         <p>{post.username}</p>
         <time dateTime={post.time}>{post.time}</time>
+        {my && <span className="material-symbols-outlined">delete</span>}
       </div>
     </div>
   );

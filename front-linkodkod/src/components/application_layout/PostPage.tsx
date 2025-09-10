@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import "../../style/Post.css";
 import { useNavigate, useParams } from "react-router";
 import "../../style/PostPage.css";
 import type PostType from "../../interface/Post.ts";
 import { getPostByid, updateLike } from "../../controller/PostController.ts";
+import { UserContext } from "../../context/User.context.tsx";
 
 export default function PostPage() {
   const [likeState, useLikeState] = useState("like");
@@ -11,6 +12,8 @@ export default function PostPage() {
   const [error, setError] = useState<any>();
   const [currentLike, setCurrentLike] = useState(post?.numOfLike);
   const token = localStorage.getItem("token");
+  const { user } = useContext(UserContext);
+  const my = post?.userId == user?.id;
   const { id } = useParams();
 
   const clickLike = async (event: any) => {
@@ -73,6 +76,7 @@ export default function PostPage() {
           </div>
           <p>{post?.username}</p>
           <time dateTime={post?.time}>{post?.time}</time>
+          {my && <span className="material-symbols-outlined">delete</span>}
         </div>
       </div>
     </div>

@@ -1,7 +1,5 @@
-import test from "node:test";
-import assert from "assert";
 import authService from "../../service/authService.js";
-import { findId } from "../../service/authService.js";
+import authUtils from "../../utils/authUtils.js";
 
 function deleteUser(url, mail) {
   try {
@@ -14,32 +12,31 @@ function deleteUser(url, mail) {
   }
 }
 
-test("authService - createUser- all good", async (t) => {
+test("authService - createUser- all good", async () => {
   const name = "erez";
   const mail = "erez";
   const password = "erez";
-  const id = 1;
-  const passwordc = "";
+  const id = authUtils.findId() + 1;
   const insertedUser = await authService.createUser(name, mail, password);
-  assert.equal(insertedUser, { id, name, mail, password: passwordc });
-  deleteUser(mail);
+  expect(insertedUser).toBe({ id, name, mail, password });
 });
 
-test("authService - createUser- field missing", async (t) => {
+test("authService - createUser- field missing", async () => {
   const name = "erez";
   const mail = "erez";
   const insertedUser = await authService.createUser(name, mail);
-  assert.throws(insertedUser, Error, "data and salt arguments required");
+  expect(insertedUser).toBe(false);
   deleteUser(mail);
 });
 
-test("authService - compareUser- all good", async (t) => {
+test("authService - compareUser- all good", async () => {
   const mail = "erez";
   const password = "erez";
   const name = "erez";
+  const id = authUtils.findId() + 1;
 
   await authService.createUser(name, mail, password);
   const comparedUser = await authService.compareUser(mail, password);
-  assert.strictEqual(comparedUser, (comparedUser.name = "erez"));
+  expect(comparedUser).toBe({ id, name, mail, password });
   deleteUser(mail);
 });

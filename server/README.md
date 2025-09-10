@@ -24,7 +24,7 @@ server/
      │   └── PostController.js                   # posts controller
      ├── middleware/
      │   ├── imageMiddleware.js                  # middleware to upload image
-     │   └── application_layout/                 # verify if token exist
+     │   └── verifyToken.js                      # verify token
      ├── routes/
      │   ├── AuthRoute.js                        # authentification routes
      │   └── PostRoute.js                        # posts routes

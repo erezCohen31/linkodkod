@@ -38,6 +38,7 @@ front-linkodkod/
      │       ├── Footer.tsx           # footer content
      │       ├── Header.tsx           # header content
      │       ├── Login.tsx            # login page
+     │       ├── MyPost.tsx           # conatiner post of user
      │       ├── Navbar.tsx           # navbar content
      │       ├── Post.tsx             # content post
      │       ├── PostPage.tsx         # content post in all page

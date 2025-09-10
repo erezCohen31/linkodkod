@@ -10,13 +10,13 @@ function findUser(mail) {
   }
   return null;
 }
-function findId() {
+export function findId() {
   const users = readFile(userPath);
   if (users.length > 0) {
     const id = Math.max(...users.map((o) => o.id));
     return id;
   }
-  return 1;
+  return 0;
 }
 const authService = {
   async createUser(name, mail, password) {
@@ -31,6 +31,7 @@ const authService = {
         password: hashedPassword,
       };
       writeFile(userPath, newUser);
+      newUser.password = "";
       return newUser;
     }
     return false;

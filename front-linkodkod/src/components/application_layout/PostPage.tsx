@@ -34,13 +34,13 @@ export default function PostPage() {
 
     if (post) {
       if (likeState === "like") {
-        updatedLike = await updateLike(token || "", post.id, post.numOfLike);
-      } else {
         updatedLike = await updateLike(
           token || "",
           post.id,
-          post.numOfLike - 1
+          post.numOfLike + 1
         );
+      } else {
+        updatedLike = await updateLike(token || "", post.id, post.numOfLike);
       }
       setCurrentLike(updatedLike);
     }

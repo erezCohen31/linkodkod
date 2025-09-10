@@ -22,9 +22,9 @@ export default function Post({ post }: PostProps) {
     let updatedLike;
 
     if (likeState === "like") {
-      updatedLike = await updateLike(token || "", post.id, currentLike + 1);
+      updatedLike = await updateLike(token || "", post.id, post.numOfLike + 1);
     } else {
-      updatedLike = await updateLike(token || "", post.id, currentLike - 1);
+      updatedLike = await updateLike(token || "", post.id, post.numOfLike);
     }
     setCurrentLike(updatedLike);
   };

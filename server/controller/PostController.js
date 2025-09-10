@@ -11,9 +11,9 @@ const postController = {
         username,
         alt
       );
-      res.json({ message: "post uploaded successfully: " });
+      res.json({ error: "post uploaded successfully: " });
     } catch (error) {
-      res.status(400).json({ message: "Post not add" });
+      res.status(400).json({ error: "Post not add" });
     }
   },
 
@@ -21,11 +21,11 @@ const postController = {
     try {
       const posts = postService.getAllPost();
       if (!posts) {
-        return res.status(404).json({ message: "Posts not found" });
+        return res.status(404).json({ error: "Posts not found" });
       }
       res.json(posts);
     } catch (error) {
-      res.status(500).json({ message: "Internal Server Error" });
+      res.status(500).json({ error: "Internal Server Error" });
     }
   },
 
@@ -34,11 +34,11 @@ const postController = {
       const { id } = req.params;
       const post = postService.getPostById(Number(id));
       if (!post) {
-        return res.status(404).json({ message: "Post not found" });
+        return res.status(404).json({ error: "Post not found" });
       }
       res.json(post);
     } catch (error) {
-      res.status(500).json({ message: "Internal Server Error" });
+      res.status(500).json({ error: "Internal Server Error" });
     }
   },
   async updateLikeCount(req, res) {
@@ -50,12 +50,12 @@ const postController = {
         Number(numOfLike)
       );
       if (!newLikeCount) {
-        return res.status(404).json({ message: "Post not found" });
+        return res.status(404).json({ error: "Post not found" });
       }
       const newLikeCountStr = newLikeCount.toString();
       res.send(newLikeCountStr);
     } catch (error) {
-      res.status(500).json({ message: "Internal Server Error" });
+      res.status(500).json({ error: "Internal Server Error" });
     }
   },
 };

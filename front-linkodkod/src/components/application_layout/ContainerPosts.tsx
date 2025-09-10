@@ -17,20 +17,22 @@ export default function PostsPage() {
   useEffect(() => {
     const fetchData = async () => {
       const posts = await getAllPosts(token || "");
+      console.log(posts);
+
       if (posts) {
         setPosts(posts);
-      } else {
-        setError(posts);
+      }
+      if (posts.error) {
+        setError(posts.error);
       }
     };
     fetchData();
   }, []);
-
-  if (!posts) {
-    return <div>{"loading"}</div>;
-  }
   if (error) {
-    return <div>{"error: " + error}</div>;
+    return <div className="loading">{error}</div>;
+  }
+  if (!posts) {
+    return <div className="loading">Loading...</div>;
   }
 
   return (

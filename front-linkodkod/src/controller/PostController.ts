@@ -3,7 +3,7 @@ import type PostType from "../interface/Post";
 const API_URL = "http://localhost:3000/api/post";
 
 //fetch for to recover all post
-export async function getAllPosts(token: string): Promise<PostType[]> {
+export async function getAllPosts(token: string) {
   try {
     const response = await fetch(API_URL, {
       headers: {
@@ -11,7 +11,7 @@ export async function getAllPosts(token: string): Promise<PostType[]> {
         Authorization: `Bearer ${token}`,
       },
     });
-    const post: PostType[] = await response.json();
+    const post = await response.json();
     return post;
   } catch (error: any) {
     return error;

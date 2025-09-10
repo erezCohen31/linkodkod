@@ -16,10 +16,6 @@ const port = process.env.PORT;
 app.use(cors());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
-app.use((req, res, next) => {
-  console.log(req.url, req.method);
-  next();
-});
 
 app.use("/api/post", PostRoutes);
 app.use("/api/auth", AuthRoutes);

@@ -3,7 +3,11 @@ import "../../style/Post.css";
 import { useNavigate, useParams } from "react-router";
 import "../../style/PostPage.css";
 import type PostType from "../../interface/Post.ts";
-import { getPostByid, updateLike } from "../../controller/PostController.ts";
+import {
+  deleteMyPost,
+  getPostByid,
+  updateLike,
+} from "../../controller/PostController.ts";
 import { UserContext } from "../../context/User.context.tsx";
 
 export default function PostPage() {
@@ -15,6 +19,7 @@ export default function PostPage() {
   const { user } = useContext(UserContext);
   const my = post?.userId == user?.id;
   const { id } = useParams();
+  const [deleted, setDeleted] = useState(false);
 
   const clickLike = async (event: any) => {
     event.stopPropagation();
@@ -34,7 +39,17 @@ export default function PostPage() {
       setCurrentLike(updatedLike);
     }
   };
-
+  const deletePost = async (event: any) => {
+    event.stopPropagation();
+    let isDeleted;
+    if (post) {
+      isDeleted = await deleteMyPost(token || "", post.id);
+    }
+    if (isDeleted) {
+      setDeleted(isDeleted);
+      navigate("/posts");
+    }
+  };
   {
     /* fetch once to recover the post with recover thr id from the url */
   }
@@ -54,6 +69,9 @@ export default function PostPage() {
 
   if (error) {
     return <p>{error};</p>;
+  }
+  if (deleted) {
+    return <></>;
   }
   return (
     <div
@@ -76,7 +94,11 @@ export default function PostPage() {
           </div>
           <p>{post?.username}</p>
           <time dateTime={post?.time}>{post?.time}</time>
-          {my && <span className="material-symbols-outlined">delete</span>}
+          {my && (
+            <span onClick={deletePost} className="material-symbols-outlined">
+              delete
+            </span>
+          )}
         </div>
       </div>
     </div>

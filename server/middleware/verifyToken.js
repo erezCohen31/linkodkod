@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
+import { findPostByid } from "../service/postService.js";
 dotenv.config();
 
 const SECRET = process.env.JWT_SECRET;
@@ -22,4 +23,26 @@ export function verifyToken(req, res, next) {
 
     return res.status(401).json({ error: "Invalid or expired token." });
   }
+}
+export function verifyId(req, res, next) {
+  if (!req.user) {
+    return res.status(401).json({ error: "Unauthorized. No user data." });
+  }
+
+  if (req.user.id !== req.params.userId) {
+    return res.status(403).json({ error: "Access forbidden: Admins only." });
+  }
+
+  next();
+}
+export function verifyPostId(req, res, next) {
+  if (!req.user) {
+    return res.status(401).json({ error: "Unauthorized. No user data." });
+  }
+
+  if (req.user.id !== findPostByid(req.params.postId)) {
+    return res.status(403).json({ error: "Access forbidden: Admins only." });
+  }
+
+  next();
 }

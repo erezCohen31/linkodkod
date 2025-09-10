@@ -17,7 +17,6 @@ export default function PostsPage() {
   useEffect(() => {
     const fetchData = async () => {
       const posts = await getAllPosts(token || "");
-      console.log(posts);
 
       if (posts) {
         setPosts(posts);

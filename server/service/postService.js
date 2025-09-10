@@ -1,4 +1,4 @@
-import { readFile, writeFile } from "../utils/file.js";
+import { readFile, writeFile, deletePostFile } from "../utils/file.js";
 const postPath = "public/posts.json";
 
 function findPost(id) {
@@ -9,10 +9,18 @@ function findPost(id) {
   }
   return null;
 }
+export function findPostByid(postId) {
+  const posts = readFile(postPath);
+  const post = posts.find((post) => post.id === Number(postId));
+  return post.userId;
+}
 function findId() {
   const posts = readFile(postPath);
-  const id = Math.max(...posts.map((o) => o.id));
-  return id;
+  if (posts.length > 0) {
+    const id = Math.max(...posts.map((o) => o.id));
+    return id;
+  }
+  return 0;
 }
 function getTime() {
   const timestamp = Date.now();
@@ -32,11 +40,15 @@ const postService = {
     return posts;
   },
   getMyPost(userId) {
-    console.log(userId);
-
     const posts = readFile(postPath);
     const myPosts = posts.filter((post) => post.userId === userId);
     return myPosts;
+  },
+  deletePost(postId) {
+    const posts = readFile(postPath);
+    const newPosts = posts.filter((post) => Number(post.id) != postId);
+    deletePostFile(postPath, newPosts);
+    return true;
   },
 
   getPostById(id) {

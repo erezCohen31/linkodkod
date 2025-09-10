@@ -72,6 +72,18 @@ const postController = {
       res.status(500).json({ error: "Internal Server Error" });
     }
   },
+  async deletePost(req, res) {
+    try {
+      const { postId } = req.params;
+      const post = postService.deletePost(Number(postId));
+      if (!post) {
+        return res.status(404).json({ error: "Post not found" });
+      }
+      res.send(true);
+    } catch (error) {
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  },
 };
 
 export default postController;

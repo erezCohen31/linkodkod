@@ -66,11 +66,13 @@ const postController = {
     try {
       const { id } = req.params;
       const { numOfLike } = req.body;
+
       const newLikeCount = postService.updateLikeCount(
         Number(id),
         Number(numOfLike)
       );
-      if (!newLikeCount) {
+
+      if (newLikeCount < 0) {
         return res.status(404).json({ error: "Post not found" });
       }
       const newLikeCountStr = newLikeCount.toString();

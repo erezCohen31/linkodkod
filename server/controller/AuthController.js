@@ -5,6 +5,12 @@ const authController = {
   async signup(req, res) {
     try {
       const { name, mail, password } = req.body;
+
+      if (!name || !password || !mail) {
+        return res.status(400).json({
+          error: " missing field(s)",
+        });
+      }
       const user = await authService.createUser(name, mail, password);
       if (user) {
         const token = generateToken(user.id.toString());
@@ -21,6 +27,12 @@ const authController = {
   async login(req, res) {
     try {
       const { mail, password } = req.body;
+
+      if (!password || !mail) {
+        return res.status(400).json({
+          error: " missing field(s)",
+        });
+      }
       const user = await authService.compareUser(mail, password);
       if (user) {
         const token = generateToken(user.id.toString());
